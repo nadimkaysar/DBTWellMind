@@ -30,6 +30,8 @@ if st.button("Log in", type="primary"):
 
         if result:
             user_id, user_email = result
+            print(user_id)
+            print(user_email)
             #cookie_controller.set("UserId",id)
             st.session_state.logged_in = True
             st.session_state['Email'] = user_email
