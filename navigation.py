@@ -35,7 +35,7 @@ def make_sidebar():
             st.session_state.login = False
             
         if "logged_in" in st.session_state:
-            hide_pages(["chat","main","registration"])
+            hide_pages(["main","registration"])
             #st.page_link("pages/page1.py", label="PHQ-9 Information", icon="🔒")
             #st.page_link("pages/anxiety.py", label="GAD-7 Information", icon="🔒")
             st.page_link("pages/chat.py", label="Chat", icon="🕵️")
