@@ -48,3 +48,4 @@ if st.button("Log in", type="primary"):
             st.error("Incorrect username or password")
     else:
         st.warning("Please enter both username and password.")
+make_sidebar()
