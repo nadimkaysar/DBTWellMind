@@ -48,9 +48,8 @@ def make_sidebar():
             if st.button("Log out"):
                 logout()
                 sleep(3)
-                streamlit_js_eval(js_expressions="parent.window.location.reload(true)")      
-        #elif cokies_value is None:
-        else "logged_in" not in st.session_state:      
+                streamlit_js_eval(js_expressions="parent.window.location.reload(true)") 
+        else:      
             hide_pages(["chat","monitor"])
             st.page_link("pages/registration.py", label="Registration", icon="🔒")
             st.page_link("main.py", label="Login", icon="🔒")
@@ -79,8 +78,7 @@ def logout():
     st.info("Logged out successfully!")
     sleep(2)
     st.switch_page("main.py")
-    streamlit_js_eval(js_expressions="parent.window.location.reload()")
-    st.experimental_rerun()
+
     
     
   
