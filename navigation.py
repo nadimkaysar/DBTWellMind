@@ -29,6 +29,7 @@ def make_sidebar():
         #cokies_value = cookie_controller.get("UserId")
         #print("Cokies Print From Navigation",cookie_controller.get("UserId"))
         #if cokies_value is not None:
+        
         if "logged_in" in st.session_state:
             st.session_state.login = True
         else:
@@ -47,11 +48,9 @@ def make_sidebar():
             if st.button("Log out"):
                 logout()
                 sleep(3)
-                streamlit_js_eval(js_expressions="parent.window.location.reload(true)")
-            
-                
+                streamlit_js_eval(js_expressions="parent.window.location.reload(true)")      
         #elif cokies_value is None:
-        elif "logged_in" not in st.session_state:      
+        else "logged_in" not in st.session_state:      
             hide_pages(["chat","monitor"])
             st.page_link("pages/registration.py", label="Registration", icon="🔒")
             st.page_link("main.py", label="Login", icon="🔒")
