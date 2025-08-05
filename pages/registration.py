@@ -5,9 +5,8 @@ from navigation import make_sidebar
 from st_pages import hide_pages
 make_sidebar()
 from sqlalchemy import text
-
-connection_url = bbb
-
+neonKey = st.secrets["neon"]
+connection_url = neonKey
 # Initialize connection with kwargs
 conn = st.connection("neondb", type="sql", url=connection_url)
 
