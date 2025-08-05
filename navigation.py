@@ -81,6 +81,7 @@ def logout():
     sleep(2)
     st.switch_page("main.py")
     streamlit_js_eval(js_expressions="parent.window.location.reload()")
+    st.experimental_rerun()
     
     
   
