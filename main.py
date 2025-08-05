@@ -7,7 +7,7 @@ from streamlit_js_eval import streamlit_js_eval
 
 #streamlit_js_eval(js_expressions="parent.window.location.reload()")
 make_sidebar()
-
+st.experimental_rerun()
 st.title("Mental Health Support System")
 
 
@@ -48,4 +48,3 @@ if st.button("Log in", type="primary"):
             st.error("Incorrect username or password")
     else:
         st.warning("Please enter both username and password.")
-make_sidebar()
