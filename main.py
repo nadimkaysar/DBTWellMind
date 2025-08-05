@@ -14,10 +14,8 @@ st.title("Mental Health Support System")
 username = st.text_input("Email")
 password = st.text_input("Password", type="password")
 hide_pages(["chat","main","registration"])
-
-connection_url = (
-    'postgresql://neondb_owner:npg_VX32wptUvbBr@ep-broad-bush-aeswvk7d-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
-)
+neonKey = st.secrets["neon"]
+connection_url = neonKey
 
 # Initialize connection with kwargs
 conn = st.connection("neondb", type="sql", url=connection_url)
