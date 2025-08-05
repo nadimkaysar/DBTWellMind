@@ -15,7 +15,7 @@ cookie_controller = CookieController()
 from time import sleep
 from datetime import datetime, UTC, timedelta
 from navigation import make_sidebar
-
+make_sidebar()
 memory = ConversationBufferMemory(human_prefix="human", ai_prefix="AI",memory_key="history", return_messages=True)
 
 
