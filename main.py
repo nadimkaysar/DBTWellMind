@@ -13,7 +13,7 @@ st.title("Mental Health Support System")
 
 username = st.text_input("Email")
 password = st.text_input("Password", type="password")
-hide_pages(["chat","main"])
+hide_pages(["chat","main","registration"])
 neonKey = st.secrets["neon"]
 connection_url = neonKey
 
