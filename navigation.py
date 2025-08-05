@@ -80,6 +80,7 @@ def logout():
     st.info("Logged out successfully!")
     sleep(2)
     st.switch_page("main.py")
+    streamlit_js_eval(js_expressions="parent.window.location.reload()")
     
     
   
