@@ -49,7 +49,7 @@ def make_sidebar():
                 logout()
                 sleep(3)
                 streamlit_js_eval(js_expressions="parent.window.location.reload(true)") 
-                parent.window.location.reload(true)
+                streamlit_js_eval(js_expressions="parent.window.location.reload(true)")
         else:      
             hide_pages(["chat","monitor"])
             st.page_link("pages/registration.py", label="Registration", icon="🔒")
