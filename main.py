@@ -7,7 +7,6 @@ from streamlit_js_eval import streamlit_js_eval
 
 #streamlit_js_eval(js_expressions="parent.window.location.reload()")
 make_sidebar()
-st.experimental_rerun()
 st.title("Mental Health Support System")
 
 
