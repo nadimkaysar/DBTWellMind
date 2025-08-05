@@ -17,10 +17,10 @@ reg_email = st.text_input(label="Email :",value="")
 reg_Password = st.text_input(label="Enter Password :",value="",type="password")
 
 if st.button("Registration", type="primary"):
-    if reg_name and reg_email:
+    if reg_name and reg_email and reg_Password:
         with conn.session as session:
             session.execute(
-                text("INSERT INTO user (name, email, password) VALUES (:name, :email, :password);"),
+                text("INSERT INTO users (name, email, password) VALUES (:name, :email, :password);"),
                 {"name": reg_name, "email": reg_email, "password":reg_Password}
             )
             session.commit()
