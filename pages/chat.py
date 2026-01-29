@@ -300,18 +300,20 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             #response = Response.response_generation_from_antropic(promptType,user_msg,memory)
             response = Response.response_Generation_from_GPT4_test(promptType,user_msg,memory)
             
-            Id = st.session_state['id']
-            User = st.session_state['Email']
+            Id = int(st.session_state['id'])
+            User = string(st.session_state['Email'])
     
             # Context Saving
             if st.session_state.count == 4:
-                if Id and User and message_history:
+                if Id and User:
                     with conn.session as session:
                         session.execute(
                             text("INSERT INTO context (UserId, summary, user) VALUES (:UserId, :summary, :user);"),
-                            {"UserId": Id, "summary": message_history, "user":User}
+                            {"UserId": Id, "summary": message_history, "user": User}
                         )
                         session.commit()
+                else:
+                   st.error("Error")
             
             if st.session_state.selfdis_value == 1:
                 response =  response +" "+ "Finally, Keep in mind this is the problem understanding phase, I want to understand you to support you best."  
