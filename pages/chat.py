@@ -89,13 +89,13 @@ if cookie_controller.get('Depression') is None and cookie_controller.get('Anxiet
         
         st.session_state.depression_level = Depression_label
         
-        if Depression_label != "No depression":
-            st.success("Your PHQ-9 Information Successfully Inserted")
-            # expires_at = datetime.now(UTC) + timedelta(minutes=2)
-            cookie_controller.set('Depression','Depression_label')
-            st_autorefresh(interval=1000, limit=100, key="fizzbuzzcounter")
-            #st.experimental_rerun()
-            sleep(3)
+        # if Depression_label != "No depression":
+        st.success("Your PHQ-9 Information Successfully Inserted")
+        # expires_at = datetime.now(UTC) + timedelta(minutes=2)
+        cookie_controller.set('Depression','Depression_label')
+        st_autorefresh(interval=1000, limit=100, key="fizzbuzzcounter")
+        #st.experimental_rerun()
+        sleep(3)
 
 # Anxiety Form Code
 if cookie_controller.get('Depression')is not None and cookie_controller.get('Anxiety') is None:
@@ -132,12 +132,13 @@ if cookie_controller.get('Depression')is not None and cookie_controller.get('Anx
         
         st.session_state.anxiety_level = Anxiety_label
             
-        if Anxiety_label != "No anxiety":
-         st.success("Your GAD-7 Information Successfully Inserted")
-         # expires_at = datetime.now(UTC) + timedelta(minutes=2)
-         cookie_controller.set('Anxiety','{Anxiety_label}')
-         st_autorefresh(interval=1000, limit=100, key="fizzbuzzcounter")
-         sleep(2)
+        # if Anxiety_label != "No anxiety":
+        st.success("Your GAD-7 Information Successfully Inserted")
+        # expires_at = datetime.now(UTC) + timedelta(minutes=2)
+        cookie_controller.set('Anxiety','{Anxiety_label}')
+        st_autorefresh(interval=1000, limit=100, key="fizzbuzzcounter")
+        sleep(2)
+
 
 # cookie_controller.remove("Depression")
 # cookie_controller.remove("Anxiety")
