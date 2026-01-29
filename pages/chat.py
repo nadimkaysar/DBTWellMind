@@ -282,6 +282,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             # promptType = PromptInisilization.JapaneseConversationPromptForGPT4o(message_history,subset,patient_messages)
         
             # Save in Memory for Management
+            
             if 'chat_history' not in st.session_state:
                 st.session_state.chat_history = []
             else:
