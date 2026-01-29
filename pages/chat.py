@@ -86,7 +86,9 @@ if cookie_controller.get('Depression') is None and cookie_controller.get('Anxiet
             Depression_label = "Moderately severe depression"
         elif total_score>19:
             Depression_label = "Severe depression"
-
+        
+        st.session_state.depression_level = Depression_label
+        
         if Depression_label != "No depression":
             st.success("Your PHQ-9 Information Successfully Inserted")
             # expires_at = datetime.now(UTC) + timedelta(minutes=2)
@@ -128,6 +130,8 @@ if cookie_controller.get('Depression')is not None and cookie_controller.get('Anx
         elif total_score>14:
          Anxiety_label = "Severe anxiety"
         
+        st.session_state.anxiety_level = Anxiety_label
+            
         if Anxiety_label != "No anxiety":
          st.success("Your GAD-7 Information Successfully Inserted")
          # expires_at = datetime.now(UTC) + timedelta(minutes=2)
