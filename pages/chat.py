@@ -319,11 +319,11 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             if st.session_state.count == 3:
                     with conn.session as session:
                         session.execute(
-                            text("INSERT INTO contexts (UserId, summary, UserEmail) VALUES (:UserId, :summary, :UserEmail);"),
+                            text("INSERT INTO contexts (summary, UserEmail, UserId) VALUES (:summary, :UserEmail,:UserId);"),
                             {
-                             "UserId": Id, 
                              "summary": History, 
                              "UserEmail": User
+                             "UserId": Id, 
                             }
                         )
                         session.commit()
