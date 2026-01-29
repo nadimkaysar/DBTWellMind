@@ -309,11 +309,11 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             #response = Response.response_generation_from_antropic(promptType,user_msg,memory)
             response = Response.response_Generation_from_GPT4_test(promptType,user_msg,memory)
             
-            # Id = int(st.session_state['id'])
-            # User = str(st.session_state['Email'])
+            Id = int(st.session_state['id'])
+            User = str(st.session_state['Email'])
             
-            Id = 7
-            User = "kaysar@gmail.com"
+            # Id = 7
+            # User = "kaysar@gmail.com"
             
             # Context Saving
             if st.session_state.count == 4:
