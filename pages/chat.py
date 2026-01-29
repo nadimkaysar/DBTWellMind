@@ -15,6 +15,13 @@ cookie_controller = CookieController()
 from time import sleep
 from datetime import datetime, UTC, timedelta
 from navigation import make_sidebar
+from sqlalchemy import text
+neonKey = st.secrets["neon"]
+connection_url = neonKey
+# Initialize connection with kwargs
+conn = st.connection("neondb", type="sql", url=connection_url)
+
+
 make_sidebar()
 memory = ConversationBufferMemory(human_prefix="human", ai_prefix="AI",memory_key="history", return_messages=True)
 
@@ -292,6 +299,19 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             # Response Generation
             #response = Response.response_generation_from_antropic(promptType,user_msg,memory)
             response = Response.response_Generation_from_GPT4_test(promptType,user_msg,memory)
+            
+            Id = st.session_state['id']
+            User = st.session_state['Email']
+    
+            # Context Saving
+            if st.session_state.count == 4:
+                if Id and User and message_history:
+                    with conn.session as session:
+                        session.execute(
+                            text("INSERT INTO context (UserId, summary, user) VALUES (:UserId, :summary, :user);"),
+                            {"UserId": Id, "summary": message_history, "user":User}
+                        )
+                        session.commit()
             
             if st.session_state.selfdis_value == 1:
                 response =  response +" "+ "Finally, Keep in mind this is the problem understanding phase, I want to understand you to support you best."  
