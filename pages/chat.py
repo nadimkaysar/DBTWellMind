@@ -321,7 +321,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
                         session.execute(
                             text("INSERT INTO contexts (summary, useremail, usercode) VALUES (:summary, :useremail,:usercode);"),
                             {
-                             "summary": History, 
+                             "summary": message_data_as_context, 
                              "useremail": User,
                              "usercode": Id
                             }
