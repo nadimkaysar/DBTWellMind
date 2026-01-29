@@ -1,11 +1,12 @@
-streamlit==1.34.0
+streamlit
 python-dotenv
 requests
 numpy
 pandas
-langchain-community
 openai
-langchain
+langchain==0.3.22
+langgraph
+langchain-community==0.3.19
 langchain-openai
 streamlit-chat
 anthropic
