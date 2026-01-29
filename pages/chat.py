@@ -65,6 +65,13 @@ def archive_messages(log_conversation_from_session):
         message_history.append("Patient :" + patient_messages[i] + '\n')
         message_history.append("Therapist :" + therapist_messages[i] + '\n')
 
+    message_data_as_context = ""   # TEXT, not list
+    for message in log_conversation_from_session:
+        if message['name'] == 'user':
+            message_data_as_context += f"Patient: {message['msg']}\n"
+        elif message['name'] == 'assistant':
+            message_data_as_context += f"Therapist: {message['msg']}\n"
+
 ## Depression Enter Form Code
 if cookie_controller.get('Depression') is None and cookie_controller.get('Anxiety') is None:
     st.title("Enter Your PHQ-9 Information")
@@ -311,7 +318,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
                     with conn.session as session:
                         session.execute(
                             text("INSERT INTO context (UserId, summary, UserEmail) VALUES (:UserId, :summary, :UserEmail);"),
-                            {"UserId": Id, "summary": message_history, "UserEmail": User}
+                            {"UserId": Id, "summary": message_data_as_context, "UserEmail": User}
                         )
                         session.commit()
                 else:
