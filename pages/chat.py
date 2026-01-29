@@ -32,6 +32,13 @@ therapist_messages_last_utterace = ""
 patient_messages_last_utterace = ""
 subset_list =[]
 formatted_data = []
+
+if "depression_level" not in st.session_state:
+    st.session_state.depression_level = None
+
+if "anxiety_level" not in st.session_state:
+    st.session_state.anxiety_level = None
+    
 def archive_messages(log_conversation_from_session):
     # Iterate through messages and separate them based on the 'Name' key
     """
