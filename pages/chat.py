@@ -171,8 +171,8 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
     if 'FlagState' not  in st.session_state:
         st.session_state.FlagState = None
     
-    if 'chat_history' not in st.session_state:
-        st.session_state.chat_history = None
+    # if 'chat_history' not in st.session_state:
+    #     st.session_state.chat_history = None
     
     if "action" not in st.session_state:
         st.session_state.action = None
