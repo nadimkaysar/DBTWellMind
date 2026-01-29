@@ -317,7 +317,6 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             
             # Context Saving
             if st.session_state.count == 3:
-                if Id and User:
                     with conn.session as session:
                         session.execute(
                             text("INSERT INTO contexts (UserId, summary, UserEmail) VALUES (:UserId, :summary, :UserEmail);"),
@@ -328,8 +327,6 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
                             }
                         )
                         session.commit()
-                else:
-                   st.error("Error")
             
             if st.session_state.selfdis_value == 1:
                 response =  response +" "+ "Finally, Keep in mind this is the problem understanding phase, I want to understand you to support you best."  
