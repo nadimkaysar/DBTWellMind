@@ -316,7 +316,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             User = "kaysar@gmail.com"
             
             # Context Saving
-            if st.session_state.count == 3:
+            if st.session_state.count == 4:
                     with conn.session as session:
                         session.execute(
                             text("INSERT INTO contexts (summary, UserEmail, UserId) VALUES (:summary, :UserEmail,:UserId);"),
