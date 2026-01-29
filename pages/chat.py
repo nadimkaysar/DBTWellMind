@@ -65,7 +65,7 @@ def archive_messages(log_conversation_from_session):
         message_history.append("Patient :" + patient_messages[i] + '\n')
         message_history.append("Therapist :" + therapist_messages[i] + '\n')
 
-    message_data_as_context = ""   # TEXT, not list
+    message_data_as_context = ""   
     for message in log_conversation_from_session:
         if message['name'] == 'user':
             message_data_as_context += f"Patient: {message['msg']}\n"
@@ -321,7 +321,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
                         session.execute(
                             text("INSERT INTO contexts (summary, useremail, usercode) VALUES (:summary, :useremail,:usercode);"),
                             {
-                             "summary": message_data_as_context, 
+                             "summary": History, 
                              "useremail": User,
                              "usercode": Id
                             }
