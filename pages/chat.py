@@ -279,8 +279,8 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
 
             st.session_state.action = best_action
             
-            history = archive_messages(st.session_state.chat_log)
-            print(history)
+            History = archive_messages(st.session_state.chat_log)
+            print(History)
             
             # MCTS Code Implimentation
             # mcts_prompt = PromptInisilization.MCTS_prompt(message_history,user_msg)
@@ -320,10 +320,10 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
                 if Id and User:
                     with conn.session as session:
                         session.execute(
-                            text("INSERT INTO context (UserId, summary, UserEmail) VALUES (:UserId, :summary, :UserEmail);"),
+                            text("INSERT INTO contexts (UserId, summary, UserEmail) VALUES (:UserId, :summary, :UserEmail);"),
                             {
                              "UserId": Id, 
-                             "summary": history, 
+                             "summary": History, 
                              "UserEmail": User
                             }
                         )
