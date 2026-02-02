@@ -195,7 +195,13 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
     
     if "state_value" not in st.session_state:
         st.session_state.state_value = None
-   
+    
+    if "contextLoad" not in st.session_state:
+        st.session_state.contextLoad = 1
+       
+    if "context" not in st.session_state:
+        st.session_state.context = None
+        
     if "selfdis_value" not in st.session_state:
         st.session_state.selfdis_value = 1
     
@@ -251,7 +257,25 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             #             st.session_state.FlagState = True
             
             # elif st.session_state.FlagState == True:
+            
+            Id = int(st.session_state['id'])
+            User = str(st.session_state['Email'])
+            
+            # Second Session Context Loading
+            
+            if st.session_state.contextLoad == 1:
+                with conn.session as session:
+                    output = session.execute(
+                            text("SELECT summary, useremail, usercode  FROM contexts WHERE useremail = :useremail AND usercode = :usercode"),
+                            {"useremail": User, "usercode": Id}
+                        ).fetchone()
+
+                if result:
+                    Context, Email, userId = output
+                    st.session_state.context = Context
                 
+                st.session_state.contextLoad += 4
+        
             # Determine The Reward
             Subset_prompt  = PromptInisilization.determine_reward_final(message_history,user_msg,st.session_state.action)
             actual_reward = Response.SubsetSelection(Subset_prompt)
@@ -316,17 +340,17 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             # User = "kaysar@gmail.com"
             
             # Context Saving
-            if st.session_state.count == 12:
-                    with conn.session as session:
-                        session.execute(
-                            text("INSERT INTO contexts (summary, useremail, usercode) VALUES (:summary, :useremail,:usercode);"),
-                            {
-                             "summary": History, 
-                             "useremail": User,
-                             "usercode": Id
-                            }
-                        )
-                        session.commit()
+            # if st.session_state.count == 12:
+            #         with conn.session as session:
+            #             session.execute(
+            #                 text("INSERT INTO contexts (summary, useremail, usercode) VALUES (:summary, :useremail,:usercode);"),
+            #                 {
+            #                  "summary": History, 
+            #                  "useremail": User,
+            #                  "usercode": Id
+            #                 }
+            #             )
+            #             session.commit()
             
             if st.session_state.selfdis_value == 1:
                 response =  response +" "+ "Finally, Keep in mind this is the problem understanding phase, I want to understand you to support you best."  
