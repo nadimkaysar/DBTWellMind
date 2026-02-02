@@ -258,7 +258,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             
             # elif st.session_state.FlagState == True:
             
-            user_id = int(st.session_state['id'])
+            user_id = str(st.session_state['id'])
             user_email = str(st.session_state['Email'])
             
             # Second Session Context Loading
@@ -270,7 +270,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
                             {"useremail": user_email, "usercode": user_id}
                         ).fetchone()
 
-                if result:
+                if output:
                     Context, Email, userId = output
                     st.session_state.context = Context
                 
