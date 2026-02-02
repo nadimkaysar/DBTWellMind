@@ -258,8 +258,8 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             
             # elif st.session_state.FlagState == True:
             
-            Id = int(st.session_state['id'])
-            User = str(st.session_state['Email'])
+            user_id = int(st.session_state['id'])
+            user_email = str(st.session_state['Email'])
             
             # Second Session Context Loading
             
@@ -267,7 +267,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
                 with conn.session as session:
                     output = session.execute(
                             text("SELECT summary, useremail, usercode  FROM contexts WHERE useremail = :useremail AND usercode = :usercode"),
-                            {"useremail": User, "usercode": Id}
+                            {"useremail": user_email, "usercode": user_id}
                         ).fetchone()
 
                 if result:
