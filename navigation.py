@@ -30,12 +30,12 @@ def make_sidebar():
         #print("Cokies Print From Navigation",cookie_controller.get("UserId"))
         #if cokies_value is not None:
         
-        if "logged_in" in st.session_state:
-            st.session_state.login = True
-        else:
-            st.session_state.login = False
+        # if "logged_in" in st.session_state:
+        #     st.session_state.login = True
+        # else:
+        #     st.session_state.login = False
             
-        if "logged_in" in st.session_state:
+        if st.session_state.logged_in == True:
             hide_pages(["main","chat","registration"])
             #st.page_link("pages/page1.py", label="PHQ-9 Information", icon="🔒")
             #st.page_link("pages/anxiety.py", label="GAD-7 Information", icon="🔒")
