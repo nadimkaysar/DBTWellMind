@@ -45,6 +45,9 @@ if "depression_level" not in st.session_state:
 
 if "anxiety_level" not in st.session_state:
     st.session_state.anxiety_level = None
+
+if "stress_level" not in st.session_state:
+    st.session_state.stress_level = None
     
 def archive_messages(log_conversation_from_session):
     # Iterate through messages and separate them based on the 'Name' key
@@ -75,7 +78,7 @@ def archive_messages(log_conversation_from_session):
     return message_data_as_context
 
 ## Depression Enter Form Code
-if cookie_controller.get('Depression') is None and cookie_controller.get('Anxiety') is None:
+if cookie_controller.get('Depression') is None and cookie_controller.get('Stress') is None:
     st.title("Enter Your PHQ-9 Information")
 
     CHOICES = {0: "Not at all", 1: "Several days", 2: "More than half the days", 3:"Nearly every day"}
@@ -121,55 +124,55 @@ if cookie_controller.get('Depression') is None and cookie_controller.get('Anxiet
         sleep(3)
 
 # Anxiety Form Code
-if cookie_controller.get('Depression')is not None and cookie_controller.get('Anxiety') is None:
+if cookie_controller.get('Depression')is not None and cookie_controller.get('Stress') is None:
  
-   st.title("Enter Your GAD-7 Information")
+   st.title("Enter Your PSS-10 Information")
 
-   CHOICES = {0: "Not at all", 1: "Several days", 2: "More than half the days", 3:"Nearly every day"}
+   CHOICES = {0: "Never", 1: "Almost Never", 2: "Sometimes", 3:"Fairly Often", 4:"Very Often"}
 
    def format_func(option):
      return CHOICES[option]
 
 
-   gad_1 = st.selectbox("1 Feeling nervous, anxious or on edge?", options=list(CHOICES.keys()), format_func=format_func)
-   gad_2 = st.selectbox("2 Not being able to stop or control worrying?", options=list(CHOICES.keys()), format_func=format_func)
-   gad_3 = st.selectbox("3 Worrying too much about different things?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_1 = st.selectbox("1 In this month, How often have you been upset because of something that  happened unexpectedly?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_2 = st.selectbox("2 In this month, How often have you felt that you were unable to control the important things in your life?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_3 = st.selectbox("3 In this month, How often have you felt nervous and stressed?", options=list(CHOICES.keys()), format_func=format_func)
 
-   gad_4 = st.selectbox("4 Trouble relaxing?", options=list(CHOICES.keys()), format_func=format_func)
-   gad_5 = st.selectbox("5 Being so restless that it is hard to sit still?", options=list(CHOICES.keys()), format_func=format_func)
-   gad_6 = st.selectbox("6 Becoming easily annoyed or irritable?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_4 = st.selectbox("4 In the last month, how often have you felt confident about your ability to handle your personal problems?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_5 = st.selectbox("5 In the last month, how often have you felt that things were going your way?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_6 = st.selectbox("6  In the last month, how often have you found that you could not cope with all the things that you had to do?", options=list(CHOICES.keys()), format_func=format_func)
 
-   gad_7 = st.selectbox("7 Feeling afraid as if something awful might happen?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_7 = st.selectbox("7 In the last month, how often have you been able to control irritations in your life?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_8 = st.selectbox("8 In the last month, how often have you felt that you were on top of things?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_9 = st.selectbox("9 In the last month, how often have you been angered because of things that happened that were outside of your control?", options=list(CHOICES.keys()), format_func=format_func)
+   pss_10 = st.selectbox("10  In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?", options=list(CHOICES.keys()), format_func=format_func)
 
    if st.button("Enter", type="primary"):
-        total_score = gad_1 + gad_2 + gad_3 + gad_4 + gad_5 + gad_6 + gad_7 
-        Anxiety_label = None
-        if total_score >0 and total_score<4:
-         Anxiety_label = "No anxiety"
-        elif total_score>4 and total_score<=9:
-         Anxiety_label_label = "Mild anxiety"
-        elif total_score>9 and total_score<=14:
-         Anxiety_label_label = "Moderate anxiety"
-        elif total_score>14:
-         Anxiety_label = "Severe anxiety"
+        total_score = pss_1 + pss_2 + pss_3 + pss_4 + pss_5 + pss_6 + pss_7 + pss_8 + pss_9 + pss_10
+        stress_label = None
+        if total_score >=0 and total_score<14:
+          stress_label = "Low Stress"
+        elif total_score>=14 and total_score<27:
+          stress_label = "Moderate Stress"
+        elif total_score>27:
+          stress_label = "High Stress"
         
-        st.session_state.anxiety_level = Anxiety_label
-            
+        st.session_state.stress_label = stress_label
+
         # if Anxiety_label != "No anxiety":
-        st.success("Your GAD-7 Information Successfully Inserted")
+        st.success("Your PSS-10 Information Successfully Inserted")
         # expires_at = datetime.now(UTC) + timedelta(minutes=2)
-        cookie_controller.set('Anxiety','{Anxiety_label}')
+        cookie_controller.set('Stress','stress_label')
         st_autorefresh(interval=1000, limit=100, key="fizzbuzzcounter")
         sleep(2)
-
 
 # cookie_controller.remove("Depression")
 # cookie_controller.remove("Anxiety")
 
 # Chat Form 
-if cookie_controller.get('Depression') is not None and cookie_controller.get('Anxiety') is not None:
+if cookie_controller.get('Depression') is not None and cookie_controller.get('Stress') is not None:
     print(cookie_controller.get('Depression'))
-    print(cookie_controller.get('Anxiety'))
+    print(cookie_controller.get('Stress'))
     st.title("Well-Being Support For Student")
     if "chat_log" not in st.session_state:
         st.session_state.chat_log = []
@@ -315,7 +318,7 @@ if cookie_controller.get('Depression') is not None and cookie_controller.get('An
             
             # promptType = PromptInisilization.EnglishConversationPromptForGPT4oV8_testing(message_history,best_action,user_msg)
             # promptType = PromptInisilization.EnglishConversationPromptFor_Student_V11(message_history,best_action,user_msg)
-            promptType = PromptInisilization.dbt_support_second_session(message_history,best_action,user_msg,st.session_state.depression_level,st.session_state.anxiety_level,st.session_state.context)
+            promptType = PromptInisilization.dbt_support_second_session(message_history,best_action,user_msg,st.session_state.depression_level,st.session_state.stress_level,st.session_state.context)
             # promptType = PromptInisilization.JapaneseConversationPromptFor_Student_V12(message_history,best_action,user_msg)
             # promptType = PromptInisilization.EnglishConversationPromptForGPT4oV7_japansese(message_history,best_action,user_msg)
         
